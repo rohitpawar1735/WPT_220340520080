@@ -1,0 +1,58 @@
+<html>
+<body>
+<input type="text" name="" id="t1" placeholder="BookId"><span id="a1">Messgae</span><br>
+<input type="text" name="" id="t2" placeholder="BookName"><br>
+<input type="text" name="" id="t3" placeholder="Price"><br><br>
+<input type="button" name="Update" id="b2" value="Update">
+
+</body>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>//our scrip will come here 
+
+$(()=>{
+	showAll();
+	console.log("Dom is loaded")
+$("#b2").click(()=>{
+	let input ={
+		no:$("#t1").val(),
+		name:$("#t2").val(),
+		price:$("#t3").val(),
+	};
+	console.log("Update event");
+	console.log(input);
+	let para={
+		data: input,
+		url : "http://localhost:8081/update",
+		type: "get",
+		dataType: "json",
+		success: function(data){
+		
+			if(data.status){
+				console.log("success in update")
+				showConetnts();
+				$("#a1").text("BookId is updated");
+			}
+			else{
+				console.log("success in update else");
+		
+			}
+		},
+		error:function (e){
+			console.log("error in update");
+	}
+	};
+
+		$.ajax(para);
+		//console.log("jquery works");
+		alert("jquery works")
+	});
+
+
+	
+
+
+</script>
+
+
+</html>
